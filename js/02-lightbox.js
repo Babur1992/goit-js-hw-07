@@ -53,4 +53,4 @@ function onGalleryClick(event) {
 }
 let lightbox = new SimpleLightbox(".gallery a", {
   /* options */
-},250);
+}, 250);
