@@ -41,12 +41,14 @@ function onGalleryClick(event) {
   const instance = basicLightbox.create(`
     <img src="${dataset.source}" width="${dataset.width}" height="${dataset.height}">
   `);
-  instance.show();
+  instance.show(() => document.addEventListener("keydown", onEscKeyPress));
   // Додаємо обробник подій на клавішу Escape
   document.addEventListener("keydown", onEscKeyPress);
   function onEscKeyPress(event) {
     if (event.code === "Escape") {
-      instance.close();
+      instance.close(() =>
+        document.removeEventListener("keydown", onEscKeyPress)
+      );
       // Видаляємо обробник подій, коли модальне вікно закрито
       document.removeEventListener("keydown", onEscKeyPress);
     }
